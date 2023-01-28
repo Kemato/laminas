@@ -1,0 +1,67 @@
+<?php
+$changePassword = $this->change_password;
+$changePassword->prepare();
+?>
+<?= $this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/vnd.microsoft.icon',
+    'href' => $this->basePath() . '/img/favicon.ico'
+])
+    ->prependStylesheet($this->basePath('css/style.css'))
+    ->prependStylesheet($this->basePath('css/app.css'))
+    ->prependStylesheet($this->basePath('css/profile.css'))
+
+
+?>
+<body>
+<main>
+    <div class="text-center form-title">
+        <img class="mb-4" src="<?= $this->basePath('img/locust-solid.svg') ?>" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Enter passwords</h1>
+        <div class="mb-3 text-lg-left">
+            <?= $this->form()->openTag($changePassword); ?>
+            <?= $this->formLabel($changePassword->get('old_password')); ?>
+            <div class="form-group">
+                <?= $this->formPassword($changePassword->get('old_password')); ?>
+            </div>
+
+            <div class="text-danger">
+                <?= $this->formElementErrors($changePassword->get('old_password')); ?>
+            </div>
+        </div>
+        <div class="mb-3 text-lg-left">
+            <?= $this->formLabel($changePassword->get('new_password')); ?>
+            <div class="form-group">
+                <?= $this->formPassword($changePassword->get('new_password')); ?>
+            </div>
+
+            <div class="text-danger">
+                <?= $this->formElementErrors($changePassword->get('new_password')); ?>
+            </div>
+        </div>
+        <div class="mb-3 text-lg-left text-left">
+            <?= $this->formLabel($changePassword->get('confirm_new_password')); ?>
+            <div class="form-group">
+                <?= $this->formPassword($changePassword->get('confirm_new_password')); ?>
+            </div>
+
+            <div class="text-danger">
+                <?= $this->formElementErrors($changePassword->get('confirm_new_password')); ?>
+            </div>
+        </div>
+
+        <div>
+            <?= $this->formSubmit($changePassword->get('change_password')); ?>
+        </div>
+
+        <?= $this->form()->closeTag(); ?>
+
+        <p class="demo"></p>
+        <p class="demo_2"></p>
+        <p class="demo_3"></p>
+        <a class="btn" href="profile" type="submit">Get back</a>
+        <p class="mt-5 mb-3 text-muted">&copy; 2021–2022</p>
+    </div>
+</main>
+</body>
+</html>

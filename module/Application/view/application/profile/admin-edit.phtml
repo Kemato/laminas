@@ -1,0 +1,198 @@
+<?php
+$profileEditForm = $this->profile_edit_form;
+$profileEditForm->prepare();
+
+$newMobileNumberForm = $this->new_mobile_number_form;
+$newMobileNumberForm->prepare();
+
+$newEmailForm = $this->new_email_form;
+$newEmailForm->prepare();
+
+$title = $this->title;
+$mobiles = $this->mobiles;
+$mails = $this->mails;
+$image = $this->image;
+?>
+
+
+<?= $this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/vnd.microsoft.icon',
+    'href' => $this->basePath() . '/img/favicon.ico'
+])
+    ->prependStylesheet($this->basePath('css/sidebars.css'))
+    ->prependStylesheet($this->basePath('css/app.css'))
+    ->prependStylesheet($this->basePath('css/test.css'))
+    ->prependStylesheet($this->basePath('css/style.css'))
+    ->prependStylesheet($this->basePath('css/bootstrap.css'))
+?>
+<body>
+<main>
+    <?= $this->form()->openTag($profileEditForm); ?>
+    <div class="backi container rounded bg-white mt-5 mb-5 scrollarea">
+        <div class="row">
+            <div class="col-md-2 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+                                                                                             width="150px"
+                                                                                             height="150px"
+                                                                                             src="/<?= $image ?>"><span
+                    <button class="d-flex flex-column btn align-items-center text-center btn-class" type="button">Change
+                        Avatar
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-10 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2 d-flex">
+                        <div class="d-flex">
+                            <div class="form-group  col-md-4">
+                                <?= $this->formLabel($profileEditForm->get('firstName')); ?>
+                                <?= $this->formText($profileEditForm->get('firstName')); ?>
+                            </div>
+                            <div class="text-danger">
+                                <?= $this->formElementErrors($profileEditForm->get('lastName')); ?>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <?= $this->formLabel($profileEditForm->get('lastName')); ?>
+                                <?= $this->formText($profileEditForm->get('lastName')); ?>
+                            </div>
+                            <div class="text-danger">
+                                <?= $this->formElementErrors($profileEditForm->get('lastName')); ?>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <?= $this->formLabel($profileEditForm->get('patronymic')); ?>
+                                <?= $this->formText($profileEditForm->get('patronymic')); ?>
+                            </div>
+                            <div class="text-danger">
+                                <?= $this->formElementErrors($profileEditForm->get('patronymic')); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" d-flex">
+                        <div class="col-md-6">
+                            <?= $this->formLabel($profileEditForm->get('gender')); ?>
+                            <?= $this->formSelect($profileEditForm->get('gender')); ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $this->formLabel($profileEditForm->get('birthday')); ?>
+                            <div class="d-flex">
+                                <?= $this->formDateSelect($profileEditForm->get('birthday')); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex" style="padding-top: 10px">
+                        <div class="col-6">
+                            <?= $this->formLabel($profileEditForm->get('skype')); ?>
+                            <?= $this->formText($profileEditForm->get('skype')); ?>
+                        </div>
+
+                        <div class="col-6">
+                            <?= $this->formLabel($profileEditForm->get('title')); ?>
+                            <?= $this->formSelect($profileEditForm->get('title')); ?>
+                        </div>
+                    </div>
+                    <div class="d-flex" style="padding-top: 10px">
+                        <div class="col-6">
+                            <?= $this->formLabel($profileEditForm->get('admin')); ?>
+                            <?= $this->formSelect($profileEditForm->get('admin')); ?>
+                        </div>
+
+                        <div class="col-6">
+                            <?= $this->formLabel($profileEditForm->get('active')); ?>
+                            <?= $this->formSelect($profileEditForm->get('active')); ?>
+                        </div>
+                    </div>
+                    <div class="mt-10 text-center d-flex">
+                        <?= $this->formSubmit($profileEditForm->get('edit_profile')); ?>
+                        <a class="btn btn-class" href="/admin-list" type="submit">Get back</a>
+                    </div>
+
+                    <?= $this->form()->closeTag(); ?>
+                    <div class="d-block col-16">
+                        <div class="d-flex">
+                            <div class="" style="width: 200px; margin-left:20px">
+                                <label class="col-12 labels ">Mobile Number</label>
+                                <?php foreach ($mobiles as $phone):?>
+                                    <div class="d-flex">
+                                        <div>
+                                            <h3 type="tel" class="form-control"
+                                                style="width: 180px"><?= $phone->getNumber() ?></h3>
+                                        </div>
+                                        <div>
+                                            <a class="btn" type="button"><img class=""
+                                                                              src="<?= $this->basePath('img/redact.png') ?>"
+                                                                              alt="" width="25" height="25"></a>
+                                        </div>
+                                        <div>
+                                            <a class=" btn" type="button" href="/profile-edit/deletephone/<?= $phone->getId() ?>"><img
+                                                        class="" src="<?= $this->basePath('img/trash.png') ?>" alt=""
+                                                        width="25" height="25"></a>
+                                        </div>
+                                    </div>
+
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="" style="width: 200px; margin-left: 150px">
+                                <label class="col-12 labels">Email</label>
+                                <?php foreach ($mails as $mail): ?>
+                                    <div class="d-flex">
+                                        <div class="">
+                                            <h3 type="tel" class="form-control"
+                                                style="width: 250px"><?= $mail->getMail() ?></h3>
+                                        </div>
+                                        <div>
+                                            <a class="btn" type="button"><img class=""
+                                                                              src="<?= $this->basePath('img/redact.png') ?>"
+                                                                              alt="" width="25" height="25"></a>
+                                        </div>
+                                        <div>
+                                            <a class=" btn" type="button" href="/profile-edit/deletemail/<?= $mail->getId() ?>"><img
+                                                        class="" src="<?= $this->basePath('img/trash.png') ?>" alt=""
+                                                        width="25" height="25"></a>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div style="width: 300px">
+                                <div class="col-12 d-inline-block new" style="padding-top: 50px">
+                                    <?= $this->form()->openTag($newMobileNumberForm); ?>
+                                    <?= $this->formLabel($newMobileNumberForm->get('telephone')); ?>
+                                    <?= $this->formText($newMobileNumberForm->get('telephone')); ?>
+                                    <div style="padding-top: 10px" class="btn">
+                                        <?= $this->formSubmit($newMobileNumberForm->get('add_number')); ?>
+                                    </div>
+                                    <?= $this->form()->closeTag(); ?>
+                                </div>
+                            </div>
+                            <div style="width: 300px; margin-left: 50px">
+                                <div class="col-12 d-inline-block new" style="padding-top: 50px">
+                                    <?= $this->form()->openTag($newEmailForm); ?>
+                                    <?= $this->formLabel($newEmailForm->get('email')); ?>
+                                    <?= $this->formText($newEmailForm->get('email')); ?>
+                                    <div style="padding-top: 10px" class="btn">
+                                        <?= $this->formSubmit($newEmailForm->get('add_email')); ?>
+                                    </div>
+                                    <?= $this->form()->closeTag(); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="display-block" style="padding-top: 100px">
+        <button class="btn ">Delete Account</button>
+    </div>
+
+</main>
+</body>

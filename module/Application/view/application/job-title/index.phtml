@@ -1,0 +1,45 @@
+<?php
+$newTitleForm = $this->new_title_form;
+$newTitleForm->prepare();
+
+$title = $this->title;
+?>
+<?= $this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/vnd.microsoft.icon',
+    'href' => $this->basePath() . '/img/favicon.ico'
+])
+    ->prependStylesheet($this->basePath('css/style.css'))
+    ->prependStylesheet($this->basePath('css/sidebars.css'))
+    ->prependStylesheet($this->basePath('css/app.css'))
+
+?>
+
+<div class="form-title" style="margin-top: auto">
+    <div class="text-center">
+        <img class="mb-4" src="<?= $this->basePath('img/locust-solid.svg') ?>" alt="" width="72" height="57">
+        <h1 class="h4 mb-3 fw-normal">Create and Delete Titles</h1>
+        <div class="row mt-3 d-flex" style="display: flex">
+            <label class="d-flex">Title</label>
+            <div class="d-block">
+                <?php foreach ($this->title as $key => $title): ?>
+                    <div class="d-flex">
+                        <div class="col-md-12 d-flex" id="<?= $key ?>">
+                            <p type="text" class="form-control"><?= $title->getPost() ?></p>
+                        </div>
+                        <button class="d-flex btn" type="button"><img class=""
+                                                                      src="<?= $this->basePath('img/redact.png') ?>"
+                                                                      alt="" width="25" height="25"></button>
+                        <a class= "d-flex btn" type="button" href="delete/<?=$title->getId()?>"><img class="" src="<?= $this->basePath('img/trash.png') ?>" alt="" width="25" height="25"></a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?= $this->form()->openTag($newTitleForm); ?>
+        <?= $this->formText($newTitleForm->get('title')); ?>
+        <div class=" ">
+            <?= $this->formSubmit($newTitleForm->get('add_title')); ?>
+        </div>
+        <?= $this->form()->closeTag(); ?>
+    </div>
+</div>

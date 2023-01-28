@@ -1,0 +1,90 @@
+<?php
+$letterForm = $this->letter_form;
+$letterForm->prepare();
+$message = $this->message;
+$searchForm = $this->search_form;
+$searchForm->prepare();
+$dialogName = $this->dialog_name;
+$dialogs = $this->dialogs;
+?>
+<main>
+    <div class="content" style="width: 1150px">
+        <div class="navline">
+            <img class="irl" src="<?= $dialogs[0]['img'] ?>" alt="">
+            <p style="color:white; padding-top: 10px"><?= $dialogs[0]['name'] ?></p>
+        </div>
+        <div class="scroll" style="height: 90%">
+
+            <div class="">
+                <?php foreach ($this->message as $message): ?>
+
+                    <div class="">
+                        <div class="mess">
+                            <div class="<?= $message['from_me'] ? 'from-me' : 'from-them' ?>">
+                                <p><?= $message['text'] ?></p>
+                                <h6 class="w">Sent:</h6>
+                                <h6 class="w"><?= $message['time_sent'] ?></h6>
+                                <h6 class="r"><?= $message['time_read'] ?></h6>
+                                <h6 class="r" style="padding-left: 10px">Read:</h6>
+                            </div>
+                            <div></div>
+
+                        </div>
+                    </div>
+
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <?= $this->form()->openTag($letterForm); ?>
+        <div class="navline">
+            <div class="navline, d-flex">
+                <div>
+                    <?= $this->formText($letterForm->get('message')); ?>
+                </div>
+                <div>
+                    <?= $this->formSubmit($letterForm->get('send')); ?>
+                </div>
+            </div>
+        </div>
+        <?= $this->form()->closeTag(); ?>
+
+    </div>
+    <div class="b-example-divider" style="width: 10px;"></div>
+    <div class="flex-shrink-0 p-3 bg-white" style="width: 400px;">
+        <?= $this->form()->openTag($searchForm); ?>
+
+        <a href="" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+            <svg class="bi me-2" width="30" height="24">
+                <use href="../pictures/locust-solid.svg"/>
+            </svg>
+            <span class="fs-5 fw-semibold text-center">Chats</span>
+        </a>
+        <div class="d-flex">
+            <div>
+                <?= $this->formText($searchForm->get('dialog')); ?>
+
+            </div>
+            <div style="color:white">
+                <?= $this->formSubmit($searchForm->get('search')); ?>
+            </div>
+        </div>
+        <?= $this->form()->closeTag(); ?>
+
+        <div id="contacts">
+            <?php foreach ($this->dialogs as $item): ?>
+                <a href = '/chat/index/<?=$item['id']?>'>
+                    <div class="contact" style="">
+                        <div class="wrap" style="border-top:5px ">
+                            <img class="irl" src="/<?= $item['image'] ?>" alt=""/>
+                            <div class="meta">
+                                <p class="name"><?= $item['first_name'] . ' ' . $item['last_name'] ?></p>
+                                <p class="preview"><?= $item['last_message'] ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</main>

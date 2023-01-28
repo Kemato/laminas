@@ -1,0 +1,121 @@
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+data{
+    color: rgba(0,0,0,0.5);
+}
+.backi{
+    background: #2c3034;
+}
+.form-control{
+    margin-top: 5px;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8;
+    display:inline;
+}
+.btn-class{
+    display: inline-flex;
+    align-items: center;
+    padding: .25rem .5rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, .65);
+    background-color: purple;
+    border: 0;
+}
+.btn-class:hover,
+.btn-class:focus {
+    color: rgba(0, 0, 0, .85);
+    background-color: purple;
+}
+.btn-class[aria-expanded="true"] {
+    color: purple;
+}
+.btn-class[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+}
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+.content-scroll {
+    min-height: 0%;
+    max-height: 100%;
+    margin-bottom: 10px;
+    overflow:scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+.centring{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.form-title {
+    display: block;
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin-left: 570px;
+    margin-top: 100px;
+}
+
+.form-title .checkbox {
+    font-weight: 400;
+}
+
+.form-title .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-title input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-title input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+tabl{
+    with: 100px;
+    margin: 50px;
+}

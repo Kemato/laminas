@@ -1,0 +1,86 @@
+<?php
+$users = $this->users;
+$jobTitle = $this->job_title;
+$gender = ['', 'Man', 'Woman']
+?>
+<body onload="sortUsers()">
+<main class="users" style="">
+    <div class="container text-center scrollarea">
+        <table class="table thead-dark" id="myTable">
+            <thead>
+            <tr>
+                <th scope="col"><img src="<?= $this->basePath('img/locust-solid.svg') ?>" alt="" width="48" height="38">
+                </th>
+                <th scope="col">Name</th>
+                <th scope="col">Last-Name</th>
+                <th scope="col">Title</th>
+                <th scope="col">Age</th>
+                <th scope="col">Mobile Num.</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($users as $key => $user): ?>
+                <?php if ($user->getIsActive()): ?>
+                    <tr id="<?= $user->getId() ?>">
+                        <th scope="row"><?= $key+1 ?></th>
+                        <td><?= $user->getFirstName() ?></td>
+                        <td><?= $user->getLastName() ?></td>
+                        <td><?= $jobTitle[$user->getPost()] ?></td>
+                        <td><?= $user->getBirthday() ?></td>
+                        <td><?= $user->getPhoneNumber() ?></td>
+                        <td><?= $user->getMainMail() ?></td>
+                        <td><?= $gender[$user->getGender()] ?></td>
+                    </tr>
+                <?php else:  $key--?>
+
+                <?php endif ?>
+
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <button class="btn" style="padding-top:0px; margin-top: 5px" type="button" onclick="Previous()"><-</button>
+        <button class="btn" style="padding-top:0px; margin-top: 5px" type="button" onclick="Next()">-></button>
+    </div>
+    <div class="">
+        <h1 class="text-center" style="width: auto">Filter:</h1>
+        <input class="form-floating" style="width: 170px" type="text" id="myInput" onkeyup="myFunction()"
+               placeholder="Search for names.." title="Type in a name">
+        <label class="labels d-block">Gender</label>
+        <select id="filman" class="d-block">
+            <option id="sel1" value="0" selected="selected">All</option>
+            <option id="sel2" value="1">Man</option>
+            <option id="sel3" value="2">Woman</option>
+        </select>
+        <label class="labels d-block">Age</label>
+        <div class="d-flex">
+            <input value="0" type="number" class="d-flex" id="AgeMin" style="width: 50px">
+            -------
+            <input value="99" type="number" class="d-flex" id="AgeMax" style="width: 50px">
+        </div>
+        <div class="d-block">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#Post_Check_Filter" aria-expanded="false">
+                Post
+            </button>
+            <div class="collapse" id="Post_Check_Filter">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li>
+                        <div class="checkbox mb-3">
+                            <?php foreach ($this->post as $item): ?>
+                                <label class="d-block link-dark rounded">
+                                    <input type="checkbox" class="link-dark rounded" value="1" checked
+                                           id="<?= $item ?>"> <?= $item ?>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button class="btn d-flex" style="margin-left: 40px" type="button" onclick="sortUsers()">Apply</button>
+    </div>
+</main>
+</body>
+

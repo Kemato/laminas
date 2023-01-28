@@ -1,0 +1,104 @@
+<?= $this->headLink([
+    'rel'  => 'shortcut icon',
+    'type' => 'image/vnd.microsoft.icon',
+    'href' => $this->basePath() . '/img/favicon.ico'
+])
+    ->prependStylesheet($this->basePath('css/log.css'))
+    ->prependStylesheet($this->basePath('css/sidebars.css'))
+    ->prependStylesheet($this->basePath('css/app.css'))
+    ->prependStylesheet($this->basePath('css/test.css'))
+    ->prependStylesheet($this->basePath('css/style.css'))
+    ->prependStylesheet($this->basePath('css/profile.css'))
+    ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+?>
+<?php
+$dataUser = $this->data_user;
+$phones = $this->phones;
+$mails = $this->mails;
+$jobTitle = $this->job_title;
+$gender = ['', 'Man', 'Woman'];
+?>
+<main>
+    <div class="">
+        <div class="row">
+            <div class="col-md-2 ">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+                                                                                             width="150px"
+                                                                                             src="<?= $this->basePath($dataUser->getImage())?>">
+
+                    <button class="d-flex flex-column btn align-items-center text-center btn-class" type="button">Change
+                        Avatar
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-10 border-right">
+                <div class="p-3 py-5 d-block">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-5 d-flex">
+                        <div class="d-flex col-4">
+                            <div class="form-group col-8" style="margin-left: 30px">
+                                <label>First Name</label>
+
+                                <p class="form-control"><?= $dataUser->getFirstName() ?></p>
+                            </div>
+                            <div class="form-group col-8" style="margin-left: 30px">
+                                <label>Last Name</label>
+                                <p class="form-control"><?= $dataUser->getLastName() ?></p>
+                            </div>
+                            <div class="form-group col-8" style="margin-left: 30px">
+                                <label>Patronymic</label>
+                                <p class="form-control"><?= $dataUser->getPatronymic() ?></p>
+                            </div>
+                        </div>
+                        <div class="d-flex row mt-5 d-flex">
+                            <div class="form-group col-4" style="margin-left: 30px">
+                                <label>Gender</label>
+                                <p class="form-control"><?= $gender[$dataUser->getGender()] ?></p>
+                            </div>
+                            <div class="form-group col-4" style="margin-left: 30px">
+                                <label>Birthday</label>
+                                <p class="form-control"><?= $dataUser->getBirthday() ?></p>
+                            </div>
+                        </div>
+                        <div class="d-flex row d-flex">
+                            <div class="form-group col-4" style="margin-left: 30px">
+                                <label>Skype</label>
+                                <p class="form-control"><?= $dataUser->getSkype() ?></p>
+                            </div>
+                            <div class="form-group col-4" style="margin-left: 30px">
+                                <label>Title</label>
+                                <p class="form-control"><?= $jobTitle->getPost() ?></p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex" style="margin-left: 30px">
+                            <div class="d-block col-md-4">
+                                <label class="labels">Mobile Number</label>
+                                <?php foreach ($this->phones as $tel): ?>
+                                    <div class="">
+                                        <p type="tel" class="form-control"><?= $tel->getNumber() ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="d-block col-md-4">
+                                <label class="labels">Email</label>
+                                <div class="">
+                                    <p type="tel" class="form-control"><?= $dataUser->getMail() ?></p>
+                                </div>
+                                <?php foreach ($this->mails as $mail): ?>
+                                    <div class="">
+                                        <p type="tel" class="form-control"><?= $mail->getMail() ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                    </div>
+                    <a class="btn" href="../profile-edit/edit">Edit Profile</a>
+                </div>
+
+            </div>
+        </div>
+</main>
